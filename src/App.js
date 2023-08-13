@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ReactMapGL, { Marker } from "react-map-gl";
+import ReactMapGL, { Marker, Popup } from "react-map-gl";
 
 import meteorData from "./data/meteorLandings.json";
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -9,7 +9,6 @@ import infoIcon from "./assets/heroicons-info-basic.svg";
 import "./App.css";
 
 function App() {
-  console.log(infoIcon);
   const [viewport, setViewPort] = useState({
     latitude: 32.1,
     longitude: -71.8,
@@ -17,6 +16,9 @@ function App() {
     height: window.innerHeight,
     zoom: 0.5,
   });
+
+  const [selectedLocation, setSelectedLocation] = useState(null);
+  const [isMouseOverMarker, setIsMouseOverMarker] = useState(false);
 
   return (
     <ReactMapGL
@@ -33,12 +35,37 @@ function App() {
             latitude={parseFloat(item.geolocation.latitude)}
             longitude={parseFloat(item.geolocation.longitude)}
           >
-            <button className="marker-btn">
+            <button
+              className="marker-btn"
+              onMouseOver={() => {
+                setSelectedLocation(item);
+                setIsMouseOverMarker(true);
+              }}
+              onMouseLeave={() => {
+                setSelectedLocation(null);
+                setIsMouseOverMarker(false);
+              }}
+            >
               <img src={infoIcon} alt="info icon" />
             </button>
           </Marker>
         );
       })}
+
+      {isMouseOverMarker && selectedLocation && (
+        <Popup
+          latitude={parseFloat(selectedLocation.geolocation.latitude)}
+          longitude={parseFloat(selectedLocation.geolocation.longitude)}
+        >
+          <div>
+            <p>Name: {selectedLocation.name}</p>
+            {selectedLocation.year && (
+              <p>Year: {new Date(selectedLocation.year).getFullYear()}</p>
+            )}
+            <p>Mass: {selectedLocation.mass}</p>
+          </div>
+        </Popup>
+      )}
     </ReactMapGL>
   );
 }
