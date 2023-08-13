@@ -15,14 +15,14 @@ function App() {
     longitude: -71.8,
     width: "100%",
     height: window.innerHeight,
-    zoom: 1.2,
+    zoom: 0.5,
   });
 
   return (
     <ReactMapGL
       className="map"
       {...viewport}
-      mapboxApiAccessToken="pk.eyJ1IjoidnVrYXM4NiIsImEiOiJjbGw3d2JqNjMwaHk1M21ybWcxbGwxa2tiIn0.drSVQlEPBuRcszaPlhunAw"
+      mapboxAccessToken="pk.eyJ1IjoidnVrYXM4NiIsImEiOiJjbGw5ZDNsa3EwcDVxM2tvNmttMWN0eXVwIn0.dlIdV5eWP41VW-JMF9Cs3Q"
       mapStyle="mapbox://styles/mapbox/streets-v11"
       onViewportChange={(newViewport) => setViewPort(newViewport)}
     >
