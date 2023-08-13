@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.map {
+  width: 100%;
+  height: 100vh;
+}
+
+.mapboxgl-map {
+  overflow: visible !important;
+}
+
+.marker-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  height: 15px;
+  width: 27px;
+}
