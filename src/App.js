@@ -24,7 +24,7 @@ function App() {
         style={{ width: "100%", height: "600px" }}
         {...viewport}
         mapboxAccessToken="pk.eyJ1IjoidnVrYXM4NiIsImEiOiJjbGw5ZDNsa3EwcDVxM2tvNmttMWN0eXVwIn0.dlIdV5eWP41VW-JMF9Cs3Q"
-        mapStyle="mapbox://styles/vukas86/cllb59ak700rx01ph0ubc24af"
+        mapStyle="mapbox://styles/vukas86/cllb88p2500rr01p8eobfetju"
         onViewportChange={(newViewport) => setViewport(newViewport)}
       >
         {meteorData.map((item) => {
