@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ReactMapGL, { Marker, Popup } from "react-map-gl";
+import ReactMapGL, { Marker, Popup, NavigationControl } from "react-map-gl";
 
 import meteorData from "./data/meteorLandings.json";
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -13,7 +13,8 @@ function App() {
     width: "100%",
     height: "100vh",
     zoom: 1,
-    projection: "naturalEarth",
+    maxZoom: 13,
+    // projection: "naturalEarth",
   });
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [isMouseOverMarker, setIsMouseOverMarker] = useState(false);
@@ -24,7 +25,7 @@ function App() {
         style={{ width: "100%", height: "600px" }}
         {...viewport}
         mapboxAccessToken="pk.eyJ1IjoidnVrYXM4NiIsImEiOiJjbGw5ZDNsa3EwcDVxM2tvNmttMWN0eXVwIn0.dlIdV5eWP41VW-JMF9Cs3Q"
-        mapStyle="mapbox://styles/vukas86/cllb88p2500rr01p8eobfetju"
+        mapStyle="mapbox://styles/vukas86/cllfp7uee014401pmdlfgg8io"
         onViewportChange={(newViewport) => setViewport(newViewport)}
       >
         {meteorData.map((item) => {
@@ -66,6 +67,9 @@ function App() {
             </div>
           </Popup>
         )}
+        <div className="map-controls">
+          <NavigationControl />
+        </div>
       </ReactMapGL>
     </div>
   );
